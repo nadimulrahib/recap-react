@@ -2,6 +2,8 @@ import "./style.css";
 import ItemCard from "./ItemCard";
 import Todo from "./Todo";
 import Counter from "./Counter";
+import User from "./User";
+import { Suspense } from "react";
 
 const items = [
   {
@@ -90,7 +92,15 @@ const handleClick=()=>{
   alert("Button clicked!");
 }
 
+const fetchUserData = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  const data = await res.json()
+  return data;
+} 
+
 function App() {
+
+  const userPromise = fetchUserData();
   return (
     <>
       <div>sona pakhi</div>
@@ -105,6 +115,12 @@ function App() {
 
         <button className="button bg-red-400" onClick={handleClick}>Click me</button>
         <Counter></Counter>
+
+        <Suspense fallback={<div>Loading...</div>}>
+
+        <User userPromise={userPromise}></User>
+        </Suspense>
+          
       <div className="card grid grid-cols-3 gap-4">
 
 
