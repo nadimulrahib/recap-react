@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import Countries from "./Component/Countries/Countries";
 import "./style.css";
+import Bottles from "./Component/Bottles/Bottles";
 // import ItemCard from "./ItemCard";
 // import Todo from "./Todo";
 // import Counter from "./Counter";
@@ -105,6 +106,11 @@ const contriesData = fetch("https://dummyjson.com/posts")
 .then(res => res.json());
 // console.log(contriesData);
 
+
+const bottlesData = fetch("./bottles.json")
+.then(res =>res.json())
+
+
 function App() {
   // const userPromise = fetchUserData();
   // console.log(countries);
@@ -121,6 +127,17 @@ function App() {
         <Countries  contriesData={contriesData}/>
       </div>
     </Suspense>
+
+
+    <Suspense fallback={<div>Loading...</div>}>
+      <div
+        className="app container mx-auto justify-center"
+       
+      >
+        <Bottles  bottlesData={bottlesData}/>
+      </div>
+    </Suspense>
+
 
       {/* <div>sona pakhi</div>
       <Developer name="John Doe" age="30" skill="JavaScript" />
