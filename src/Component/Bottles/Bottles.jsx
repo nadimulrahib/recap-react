@@ -1,5 +1,6 @@
 import  { use, useState } from 'react';
 import Bottle from '../Bottle/Bottle';
+import { addToStoredCart } from '../../utilis/utilis';
 
 const Bottles = ({ bottlesData }) => {
 
@@ -10,6 +11,7 @@ const Bottles = ({ bottlesData }) => {
         const addCart = [...buy, bottle]
         setBuy(addCart)
         console.log("add to cart", bottle)
+        addToStoredCart(bottle.id)
     }
 
     const bottles = use(bottlesData);
